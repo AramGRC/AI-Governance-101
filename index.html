@@ -159,7 +159,7 @@ table.simple td{padding:10px 12px;border-top:1px solid var(--line);vertical-alig
 .flip-front{background:var(--ink);color:#fff;align-items:flex-start}
 .flip-front .big{font-family:'Archivo',sans-serif;font-size:1.35rem;font-weight:900;color:var(--signal)}
 .flip-front .hint{font-size:.75rem;color:#9a9ca6;font-family:'IBM Plex Mono',monospace}
-.flip-back{background:var(--card);border:2px solid var(--ink);transform:rotateY(180deg);font-size:.84rem;line-height:1.5}
+.flip-back{background:var(--card);border:2px solid var(--ink);transform:rotateY(180deg);font-size:.82rem;line-height:1.5;justify-content:flex-start;align-items:flex-start;text-align:left;overflow:auto}
 .flip-back b{font-family:'Archivo',sans-serif}
 
 /* interactives generic */
@@ -225,6 +225,28 @@ table.simple td{padding:10px 12px;border-top:1px solid var(--line);vertical-alig
 .qopt.incorrect{border-color:var(--alert);background:#f7e4df}
 #quiz-result{display:none;margin-top:20px}
 .scorebig{font-family:'Archivo',sans-serif;font-size:3rem;font-weight:900}
+
+/* checklist */
+ul.checklist{list-style:none;margin-top:10px}
+ul.checklist li{padding:8px 0 8px 36px;position:relative;font-size:.9rem}
+ul.checklist li::before{
+  content:"\2713";position:absolute;left:0;top:7px;width:22px;height:22px;
+  border:2px solid var(--ink);border-radius:6px;background:var(--signal);
+  font-weight:700;display:grid;place-items:center;font-size:.8rem;color:var(--ink);
+}
+
+/* registration */
+.reg-field{margin-bottom:14px}
+.reg-field label{display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:.85rem;margin-bottom:6px}
+.reg-field input{
+  width:100%;max-width:460px;font:inherit;font-size:.95rem;padding:11px 14px;
+  border:2px solid var(--ink);border-radius:10px;background:#fff;
+}
+.reg-field input:focus{outline:3px solid var(--signal);outline-offset:1px}
+.reg-field .err{display:none;color:var(--alert);font-size:.8rem;margin-top:4px}
+.reg-field.invalid input{border-color:var(--alert)}
+.reg-field.invalid .err{display:block}
+#reg-status{margin-top:12px;font-size:.85rem}
 
 /* footer nav */
 #navfoot{
@@ -301,15 +323,15 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
     </ul>
   </div>
   <div class="grid3">
-    <div class="stat"><div class="n">13</div><div class="l">learning modules with voice narration</div></div>
+    <div class="stat"><div class="n">14</div><div class="l">learning modules with voice narration</div></div>
     <div class="stat"><div class="n">6+5</div><div class="l">interactive exercises + inline knowledge checks</div></div>
     <div class="stat"><div class="n">15</div><div class="l">question final quiz — 70% to pass</div></div>
   </div>
   <div class="card">
     <h3>How to take this course</h3>
-    <p style="font-size:.9rem">Work through the modules in order — later modules build on earlier ones. Each module ends with either an interactive exercise or a knowledge check; do them, they are where the learning sticks. Budget around 2.5 hours in total, or take it in three sittings: <b>Part I — Concepts &amp; principles</b> (Modules 1–7), <b>Part II — Industry &amp; risk</b> (Modules 8–9), <b>Part III — Practice</b> (Modules 10–13 + quiz). Turn on <span class="mono">Auto-voice</span> in the top bar to have every screen read aloud with your browser's built-in text-to-speech.</p>
+    <p style="font-size:.9rem">Work through the modules in order — later modules build on earlier ones. Each module ends with either an interactive exercise or a knowledge check; do them, they are where the learning sticks. Budget around 2.5 hours in total, or take it in three sittings: <b>Part I — Concepts &amp; principles</b> (Modules 1–8), <b>Part II — Industry &amp; risk</b> (Modules 9–10), <b>Part III — Practice</b> (Modules 11–14 + quiz). Turn on <span class="mono">Auto-voice</span> in the top bar to have every screen read aloud with your browser's built-in text-to-speech.</p>
   </div>
-  <div class="narration">Welcome to AI Governance 101. This self-paced course takes about two and a half hours and builds seven skills, in order. You'll describe the OECD and UNESCO AI principles and India's seven sutras; compare the responsible AI principles and processes used across frontier AI companies; identify core responsible AI risks in engineering contexts, including safety, bias, privacy, security, and misuse; interpret major frameworks — the NIST AI Risk Management Framework, ISO 42001, and the EU AI Act — and connect them to engineering practice; evaluate AI use cases for harm, failure modes, and risk severity before deployment; apply practical controls at the data, model, and system levels; and design monitoring and escalation practices for safer AI in production. There are thirteen learning modules, six interactive exercises plus five knowledge checks, and a fifteen-question final quiz with a seventy percent pass mark. Work in order — later modules build on earlier ones — and consider three sittings: concepts and principles, industry and risk, then practice. Let's begin.</div>
+  <div class="narration">Welcome to AI Governance 101. This self-paced course takes about two and a half hours and builds seven skills, in order. You'll describe the OECD and UNESCO AI principles and India's seven sutras; compare the responsible AI principles and processes used across frontier AI companies; identify core responsible AI risks in engineering contexts, including safety, bias, privacy, security, and misuse; interpret major frameworks — the NIST AI Risk Management Framework, ISO 42001, and the EU AI Act — and connect them to engineering practice; evaluate AI use cases for harm, failure modes, and risk severity before deployment; apply practical controls at the data, model, and system levels; and design monitoring and escalation practices for safer AI in production. There are fourteen learning modules, six interactive exercises plus five knowledge checks, and a fifteen-question final quiz with a seventy percent pass mark. Work in order — later modules build on earlier ones — and consider three sittings: concepts and principles, industry and risk, then practice. Let's begin.</div>
 </section>
 
 <!-- ============ M0b : COURSE DESIGNER ============ -->
@@ -349,6 +371,29 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
     </div>
   </div>
   <div class="narration">Before we begin, meet your course designer. Sakthi Thangavelu is an AI governance consultant and a certified ISO 42001 lead auditor, lead implementer, and trainer, with twenty-four years in the IT industry across AI governance, privacy, and information security. He audits and trains on ISO 42001 with multiple certification bodies, has implemented AI management systems for multiple AI startups, has held senior leadership roles in global data privacy and privacy office functions at leading IT services organizations, and led a three-year data de-identification program safeguarding fifteen million individuals' personal data in the healthcare sector. He has delivered more than fifteen batches of ISO 42001 lead implementer and lead auditor training to corporate and professional audiences. This course distills that field experience — the same frameworks you'll learn here are the ones he implements and audits every week. Now, on to module one.</div>
+</section>
+
+<!-- ============ M0c : REGISTRATION ============ -->
+<section class="screen" data-module="0" data-title="Register for your certificate" data-min="1" id="regscreen">
+  <div class="eyebrow">Registration</div>
+  <h2>Register to begin — and to receive your completion certificate</h2>
+  <p class="lede">Enter your name and email ID before starting the modules. Your name appears on the completion certificate at the end of the course, and your details are sent to the course team at AramGRC so your certificate can be issued. Both fields are required to continue.</p>
+  <div class="card" style="max-width:560px">
+    <div class="reg-field" id="rf-name">
+      <label for="reg-name">Full name <span style="color:var(--alert)">*</span></label>
+      <input type="text" id="reg-name" autocomplete="name" placeholder="e.g. Priya Raman" maxlength="80">
+      <div class="err">Please enter your name (at least 2 characters).</div>
+    </div>
+    <div class="reg-field" id="rf-email">
+      <label for="reg-email">Email ID <span style="color:var(--alert)">*</span></label>
+      <input type="email" id="reg-email" autocomplete="email" placeholder="you@example.com" maxlength="120">
+      <div class="err">Please enter a valid email address.</div>
+    </div>
+    <button class="btn primary" id="reg-submit">Register &amp; start the course &rarr;</button>
+    <div id="reg-status"></div>
+    <p style="font-size:.75rem;color:var(--muted);margin-top:14px">By registering, you agree that your name and email will be shared with AramGRC (Sakthi@AramGRC.com) for the purpose of issuing your course completion certificate.</p>
+  </div>
+  <div class="narration">One quick step before the modules begin: registration. Enter your full name and your email ID. Your name will appear on the completion certificate at the end of the course, and your details are sent to the course team at AramGRC so your certificate can be issued. Both fields are required — fill them in, press register and start the course, and module one will open.</div>
 </section>
 
 <!-- ============ M1 : HIERARCHY ============ -->
@@ -399,12 +444,12 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
 <section class="screen" data-module="2" data-title="Why AI governance, why now" data-min="10">
   <div class="eyebrow">Module 2 &middot; Context</div>
   <h2>AI is embedded in everyday life — governance has to catch up</h2>
-  <p class="lede">From healthcare to transportation, AI has moved from the lab into daily life. Scale changes the stakes: failures now affect patients, passengers, applicants, and markets — and three well-documented incidents show what happens when governance lags.</p>
-  <div class="grid3">
+    <div class="grid3">
     <div class="stat"><div class="n">223</div><div class="l">AI-enabled medical devices approved by the FDA in 2023 — up from just six in 2015 <span class="mono">(Stanford AI Index 2025)</span></div></div>
     <div class="stat"><div class="n">150k+</div><div class="l">autonomous rides per week by Waymo, while Baidu's Apollo Go serves numerous cities across China</div></div>
     <div class="stat"><div class="n">1,000+</div><div class="l">national AI policy initiatives from 69+ countries tracked in the OECD.AI repository</div></div>
   </div>
+  <p class="lede">From healthcare to transportation, AI has moved from the lab into daily life. Scale changes the stakes: failures now affect patients, passengers, applicants, and markets — and three well-documented incidents show what happens when governance lags.</p>
 
   <h3 style="margin-top:24px;font-size:1.05rem">Three incidents every engineer should know</h3>
   <div class="grid3">
@@ -432,9 +477,65 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
   <div class="narration">Module two. Why AI governance, and why now. AI has moved from the lab into daily life. In 2023 the FDA approved 223 AI-enabled medical devices, up from just six in 2015. Waymo provides over 150,000 autonomous rides each week. Because AI now touches patients, passengers, and job applicants, failures have real consequences — and three incidents show what that looks like. First, bias: Amazon built an internal AI recruiting tool trained on ten years of past hiring data. It learned to penalize resumes containing the word "women's", and Amazon scrapped it. Historical data encodes historical bias. Second, scale of harm: in the Netherlands, a government risk-scoring algorithm wrongly accused tens of thousands of families of benefits fraud, disproportionately those with dual nationality — the fallout contributed to the resignation of the Dutch cabinet in 2021. Third, accountability: Air Canada's website chatbot invented a bereavement refund policy, and a tribunal held the airline liable for what its chatbot said. "The AI said it" is not a defense. Enterprises are responding: McKinsey finds risk and compliance and data governance are the most centralized parts of AI deployment, and Gartner reports 91 percent of high-maturity organizations have dedicated AI leaders, with security threats as their top barrier. Finally, remember NIST's three harm categories — harm to people, harm to organizations, and harm to ecosystems. Every control in this course exists to reduce one of them.</div>
 </section>
 
+<!-- ============ M3 : GOVERNANCE LAYERS ============ -->
+<section class="screen" data-module="3" data-title="The layers of AI governance" data-min="8">
+  <div class="eyebrow">Module 3 &middot; The governance canvas</div>
+  <h2>The layers of AI governance — what a program actually has to govern</h2>
+  <p class="lede">"AI governance" is not one activity — it is a canvas of layers that a program must cover. Before we get into definitions and frameworks, here is the map: six layers you will see again and again, from board-level policy down to the carbon footprint of a training run.</p>
+  <div class="grid2">
+    <div class="card"><span class="tag">LAYER &middot; POLICIES &amp; OVERSIGHT</span><h3>Governing policies</h3>
+      <ul class="clean" style="font-size:.86rem">
+        <li>Enterprise AI policy — what is allowed, what is prohibited, who decides</li>
+        <li>Ethics board / steering committee with authority to block launches</li>
+        <li>Board-level accountability and clear decision rights</li>
+      </ul>
+    </div>
+    <div class="card"><span class="tag">LAYER &middot; RESOURCES</span><h3>Resources &amp; competencies</h3>
+      <ul class="clean" style="font-size:.86rem">
+        <li>Budget and named owners — governance without funding is theater</li>
+        <li>Skills: AI literacy for everyone, specialist training for builders and reviewers</li>
+        <li>Tooling for evaluation, monitoring, and documentation</li>
+      </ul>
+    </div>
+    <div class="card"><span class="tag">LAYER &middot; RISK</span><h3>Risk management</h3>
+      <ul class="clean" style="font-size:.86rem">
+        <li>Risk registers and impact assessments per use case</li>
+        <li>Defined risk appetite — what the organization will and won't accept</li>
+        <li>Controls, internal audits, and regulatory compliance mapping</li>
+      </ul>
+    </div>
+    <div class="card"><span class="tag">LAYER &middot; LIFECYCLE</span><h3>AI system lifecycle</h3>
+      <ul class="clean" style="font-size:.86rem">
+        <li>Stage gates: ideation &rarr; data &rarr; build &rarr; validate &rarr; deploy &rarr; monitor &rarr; retire</li>
+        <li>Change management across the whole pipeline — data, prompts, libraries, weights</li>
+        <li>Documentation that travels with the system, version to version</li>
+      </ul>
+    </div>
+    <div class="card"><span class="tag">LAYER &middot; CLIMATE</span><h3>Climate &amp; environmental impact</h3>
+      <ul class="clean" style="font-size:.86rem">
+        <li>Track energy use and CO&#8322; emissions of training <i>and</i> inference workloads</li>
+        <li>Right-size models — the smallest model that meets the need</li>
+        <li>Report AI's footprint within sustainability commitments</li>
+      </ul>
+    </div>
+    <div class="card"><span class="tag">LAYER &middot; DATA &amp; STAKEHOLDERS</span><h3>Data, compliance &amp; stakeholders</h3>
+      <ul class="clean" style="font-size:.86rem">
+        <li>Data governance: quality, provenance, rights, privacy</li>
+        <li>Transparency to users, regulators, and affected communities</li>
+        <li>Grievance and redress channels for people impacted by AI decisions</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="border-left:6px solid var(--signal)">
+    <h3>Zooming out: the same layering repeats at every altitude</h3>
+    <p style="font-size:.9rem">Countries govern AI with national strategies and regulation (1,000+ initiatives in the OECD.AI repository). Enterprises govern it with the six layers above. And inside the enterprise, governance cascades again — organizational level, AI-system level, model level — which is exactly where the next module picks up.</p>
+  </div>
+  <div class="narration">Module three. The layers of AI governance. AI governance is not one activity — it is a canvas of layers a program must cover. Layer one, governing policies and oversight: an enterprise AI policy that says what is allowed and prohibited, an ethics or steering committee with real authority to block launches, and board-level accountability. Layer two, resources and competencies: budget and named owners — governance without funding is theater — plus AI literacy for everyone, specialist training for builders and reviewers, and tooling for evaluation and monitoring. Layer three, risk management: risk registers, impact assessments per use case, a defined risk appetite, controls, audits, and compliance mapping. Layer four, the AI system lifecycle: stage gates from ideation through data, build, validation, deployment, monitoring, and retirement, with change management across the whole pipeline and documentation that travels with the system. Layer five, climate and environmental impact: track the energy and CO2 emissions of training and inference workloads, right-size your models, and report AI's footprint within sustainability commitments. Layer six, data, compliance and stakeholders: data governance, transparency to users and regulators, and grievance channels for people affected by AI decisions. And remember — this layering repeats at every altitude: countries, enterprises, and inside the enterprise from organization to system to model. That cascade is exactly where the next module picks up.</div>
+</section>
+
 <!-- ============ M3 : FOUNDATIONS ============ -->
-<section class="screen" data-module="3" data-title="Governance foundations &amp; enterprise programs" data-min="12">
-  <div class="eyebrow">Module 3 &middot; Foundations</div>
+<section class="screen" data-module="4" data-title="Governance foundations &amp; enterprise programs" data-min="12">
+  <div class="eyebrow">Module 4 &middot; Foundations</div>
   <h2>What AI governance is — and how enterprises structure it</h2>
   <p class="lede">AI governance is the system by which an organization manages its development and use of AI: the governance structures, policies, skills, and practices that guide AI use, monitoring, and management — so AI aligns with stakeholder objectives, is used responsibly and ethically, and complies with applicable requirements.</p>
 
@@ -459,7 +560,7 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
     <div class="flip" tabindex="0" role="button" aria-label="Flip card: Standard">
       <div class="flip-inner">
         <div class="flip-face flip-front"><span class="big">Standard</span><span>e.g. ISO/IEC 42001</span><span class="hint">tap to flip &#8635;</span></div>
-        <div class="flip-face flip-back"><b>Benchmark of quality &amp; interoperability.</b> Established criteria organizations can certify against. Usually <b>voluntary</b>, driven by market demand — but can become mandatory when adopted by regulators.</div>
+        <div class="flip-face flip-back"><b>Benchmark of quality &amp; interoperability.</b> Established criteria that organizations can certify against. Usually voluntary and driven by market demand. Can become mandatory when adopted by regulators.</div>
       </div>
     </div>
     <div class="flip" tabindex="0" role="button" aria-label="Flip card: Framework">
@@ -479,12 +580,12 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
     <h3>How they interact in real life</h3>
     <p style="font-size:.9rem">These instruments stack rather than compete. A bank in the EU might be <b>required</b> to meet the EU AI Act (regulation), <b>choose</b> to structure its program on NIST AI RMF (framework), and <b>certify</b> against ISO 42001 (standard) to demonstrate compliance to customers and auditors. Standards and frameworks are often the practical "how" behind a regulation's "what."</p>
   </div>
-  <div class="narration">Module three. Foundations. AI governance is the system by which an organization manages its development and use of AI — the structures, policies, skills, and practices that guide AI use, monitoring, and management. NIST defines the trustworthy AI this aims for: valid and reliable, safe, secure and resilient, explainable, privacy-enhanced, fair with harmful bias managed, and accountable and transparent. In enterprises, governance runs at three levels. The organizational level is process-driven: AI policy, an ethics or steering committee, compliance mapping, and audits. The AI-system level combines tools and process: data management, impact assessments, use-case validation, and documentation. The model level is tool-based and metrics-driven: training, evaluation, testing, monitoring, and change management. Practitioner maps break the discipline into twelve recurring areas, from board oversight and risk management to incident management and supply-chain governance — a useful coverage checklist. Finally, three instruments. A standard, like ISO 42001, is a voluntary benchmark you can certify against. A framework, like NIST AI RMF, is structured guidance you adopt. A regulation, like the EU AI Act, is legally enforced with penalties. And they stack: a European bank might be required to meet the AI Act, choose NIST as its structure, and certify to ISO 42001 to prove it. Flip the three cards on screen before continuing.</div>
+  <div class="narration">Module four. Foundations. AI governance is the system by which an organization manages its development and use of AI — the structures, policies, skills, and practices that guide AI use, monitoring, and management. NIST defines the trustworthy AI this aims for: valid and reliable, safe, secure and resilient, explainable, privacy-enhanced, fair with harmful bias managed, and accountable and transparent. In enterprises, governance runs at three levels. The organizational level is process-driven: AI policy, an ethics or steering committee, compliance mapping, and audits. The AI-system level combines tools and process: data management, impact assessments, use-case validation, and documentation. The model level is tool-based and metrics-driven: training, evaluation, testing, monitoring, and change management. Practitioner maps break the discipline into twelve recurring areas, from board oversight and risk management to incident management and supply-chain governance — a useful coverage checklist. Finally, three instruments. A standard, like ISO 42001, is a voluntary benchmark you can certify against. A framework, like NIST AI RMF, is structured guidance you adopt. A regulation, like the EU AI Act, is legally enforced with penalties. And they stack: a European bank might be required to meet the AI Act, choose NIST as its structure, and certify to ISO 42001 to prove it. Flip the three cards on screen before continuing.</div>
 </section>
 
 <!-- ============ M4 : FRAMEWORKS DEEP DIVE ============ -->
-<section class="screen" data-module="4" data-title="Frameworks in depth: NIST, ISO 42001, EU AI Act" data-min="14">
-  <div class="eyebrow">Module 4 &middot; Frameworks in depth</div>
+<section class="screen" data-module="5" data-title="Frameworks in depth: NIST, ISO 42001, EU AI Act" data-min="14">
+  <div class="eyebrow">Module 5 &middot; Frameworks in depth</div>
   <h2>NIST AI RMF, ISO/IEC 42001, and the EU AI Act — what each actually asks of you</h2>
   <p class="lede">These are the three instruments you'll most often be asked to "comply with" or "align to." Here's what each one contains, and what it means at your desk.</p>
 
@@ -526,12 +627,12 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
       <div class="feedback" id="tier-feedback"></div>
     </div>
   </div>
-  <div class="narration">Module four. Three frameworks in depth. First, the NIST AI Risk Management Framework, with four functions. Govern: a culture of risk management — policies, roles, and accountability at the center. Map: recognize context and identify risks before building — intended use, users, misuse potential, and affected groups. Measure: assess, analyze, and track risks — benchmarks, fairness metrics, and red-team results over versions. Manage: prioritize and act — a risk register with owners, mitigations, monitoring, and runbooks. Second, ISO 42001, the AI management system standard — the same species as ISO 9001 for quality and ISO 27001 for information security. It runs a plan-do-check-act loop: policy and objectives, risk and impact assessment, operational controls, audits, and continual improvement, and organizations can be certified against it. Third, the EU AI Act of 2024, a regulation with four risk tiers: unacceptable-risk systems like social scoring are prohibited; high-risk systems in areas like employment, education, and law enforcement need conformity assessment, documentation, logging, and human oversight; limited-risk systems like chatbots carry transparency obligations — the user must know they're talking to a machine; minimal-risk systems have no obligation. Now try the triage exercise: assign each use case to its most likely tier.</div>
+  <div class="narration">Module five. Three frameworks in depth. First, the NIST AI Risk Management Framework, with four functions. Govern: a culture of risk management — policies, roles, and accountability at the center. Map: recognize context and identify risks before building — intended use, users, misuse potential, and affected groups. Measure: assess, analyze, and track risks — benchmarks, fairness metrics, and red-team results over versions. Manage: prioritize and act — a risk register with owners, mitigations, monitoring, and runbooks. Second, ISO 42001, the AI management system standard — the same species as ISO 9001 for quality and ISO 27001 for information security. It runs a plan-do-check-act loop: policy and objectives, risk and impact assessment, operational controls, audits, and continual improvement, and organizations can be certified against it. Third, the EU AI Act of 2024, a regulation with four risk tiers: unacceptable-risk systems like social scoring are prohibited; high-risk systems in areas like employment, education, and law enforcement need conformity assessment, documentation, logging, and human oversight; limited-risk systems like chatbots carry transparency obligations — the user must know they're talking to a machine; minimal-risk systems have no obligation. Now try the triage exercise: assign each use case to its most likely tier.</div>
 </section>
 
 <!-- ============ M5 : OECD ============ -->
-<section class="screen" data-module="5" data-title="OECD AI Principles" data-min="10">
-  <div class="eyebrow">Module 5 &middot; Global principles I</div>
+<section class="screen" data-module="6" data-title="OECD AI Principles" data-min="10">
+  <div class="eyebrow">Module 6 &middot; Global principles I</div>
   <h2>The OECD AI Principles</h2>
   <p class="lede">Adopted in 2019 and updated in 2024, the OECD AI Principles were the first intergovernmental standard on AI — endorsed by 47+ adherent countries and the basis for the G20 AI Principles. Five values-based principles for trustworthy AI, plus five recommendations for policymakers.</p>
   <div class="grid2">
@@ -555,12 +656,12 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
       <div class="feedback" data-good-text="<b>Correct.</b> &quot;Awareness and literacy&quot; belongs to UNESCO's set (next module) — it's one of UNESCO's distinctive additions." data-bad-text="<b>Not quite.</b> That one IS an OECD principle. The odd one out is &quot;Awareness and literacy&quot; — a UNESCO principle, not an OECD one."></div>
     </div>
   </div>
-  <div class="narration">Module five. The OECD AI Principles. Adopted in 2019 and updated in 2024, these were the first intergovernmental standard on AI, and the basis for the G20 principles. There are five values-based principles, and each has a desk-level translation. One: inclusive growth, sustainable development and well-being — ask who benefits and who bears the cost of your use case. Two: respect for human rights and democratic values, including fairness and privacy — human-in-the-loop for consequential decisions and data minimization by default. Three: transparency and explainability — disclose AI in the interface, document the model, and give meaningful explanations for adverse decisions. Four: robustness, security and safety — adversarial testing, guardrails, a kill switch, and graceful degradation. Five: accountability — audit logs, versioning, and a named owner for every model in production. The OECD also gives governments five recommendations covering research investment, an inclusive ecosystem, enabling policy, workforce capacity, and international cooperation. Take the knowledge check: one of the four options on screen is not an OECD principle — find it.</div>
+  <div class="narration">Module six. The OECD AI Principles. Adopted in 2019 and updated in 2024, these were the first intergovernmental standard on AI, and the basis for the G20 principles. There are five values-based principles, and each has a desk-level translation. One: inclusive growth, sustainable development and well-being — ask who benefits and who bears the cost of your use case. Two: respect for human rights and democratic values, including fairness and privacy — human-in-the-loop for consequential decisions and data minimization by default. Three: transparency and explainability — disclose AI in the interface, document the model, and give meaningful explanations for adverse decisions. Four: robustness, security and safety — adversarial testing, guardrails, a kill switch, and graceful degradation. Five: accountability — audit logs, versioning, and a named owner for every model in production. The OECD also gives governments five recommendations covering research investment, an inclusive ecosystem, enabling policy, workforce capacity, and international cooperation. Take the knowledge check: one of the four options on screen is not an OECD principle — find it.</div>
 </section>
 
 <!-- ============ M6 : UNESCO ============ -->
-<section class="screen" data-module="6" data-title="UNESCO principles + matching exercise" data-min="12">
-  <div class="eyebrow">Module 6 &middot; Global principles II</div>
+<section class="screen" data-module="7" data-title="UNESCO principles + matching exercise" data-min="12">
+  <div class="eyebrow">Module 7 &middot; Global principles II</div>
   <h2>UNESCO's Recommendation on the Ethics of AI</h2>
   <p class="lede">Adopted by all 193 UNESCO member states in November 2021 — the first truly global standard on AI ethics. It rests on four values (human rights &amp; dignity; peaceful, just &amp; interconnected societies; diversity &amp; inclusiveness; environment &amp; ecosystem flourishing) and ten principles.</p>
   <table class="simple">
@@ -591,12 +692,12 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
       <div class="feedback" id="match-feedback"></div>
     </div>
   </div>
-  <div class="narration">Module six. UNESCO's Recommendation on the Ethics of AI, adopted by all 193 member states in 2021, is the first truly global AI ethics standard. It rests on four values — human rights and dignity; peaceful, just and interconnected societies; diversity and inclusiveness; and a flourishing environment — and ten principles: proportionality and do no harm; safety and security; fairness and non-discrimination; sustainability; the right to privacy and data protection; human oversight and determination; transparency and explainability; responsibility and accountability; awareness and literacy; and multi-stakeholder, adaptive governance. Two of these — proportionality, and awareness and literacy — are distinctive to UNESCO. Here's the key insight: across OECD, UNESCO, NIST, the EU AI Act, and national sets from Singapore, Hong Kong, and Australia, the same themes keep recurring under different names. NIST says "fair with harmful bias managed" where UNESCO says "fairness and non-discrimination." That convergence means one well-designed internal control set can satisfy many frameworks at once. Try the matching exercise to see the pattern for yourself, then continue.</div>
+  <div class="narration">Module seven. UNESCO's Recommendation on the Ethics of AI, adopted by all 193 member states in 2021, is the first truly global AI ethics standard. It rests on four values — human rights and dignity; peaceful, just and interconnected societies; diversity and inclusiveness; and a flourishing environment — and ten principles: proportionality and do no harm; safety and security; fairness and non-discrimination; sustainability; the right to privacy and data protection; human oversight and determination; transparency and explainability; responsibility and accountability; awareness and literacy; and multi-stakeholder, adaptive governance. Two of these — proportionality, and awareness and literacy — are distinctive to UNESCO. Here's the key insight: across OECD, UNESCO, NIST, the EU AI Act, and national sets from Singapore, Hong Kong, and Australia, the same themes keep recurring under different names. NIST says "fair with harmful bias managed" where UNESCO says "fairness and non-discrimination." That convergence means one well-designed internal control set can satisfy many frameworks at once. Try the matching exercise to see the pattern for yourself, then continue.</div>
 </section>
 
 <!-- ============ M7 : INDIA 7 SUTRAS ============ -->
-<section class="screen" data-module="7" data-title="India's 7 Sutras (MeitY)" data-min="10">
-  <div class="eyebrow">Module 7 &middot; Global principles III</div>
+<section class="screen" data-module="8" data-title="India's 7 Sutras (MeitY)" data-min="10">
+  <div class="eyebrow">Module 8 &middot; Global principles III</div>
   <h2>The 7 Sutras — India's AI Governance Guidelines (MeitY)</h2>
   <p class="lede">On 5 November 2025, India's Ministry of Electronics and Information Technology (MeitY) released the <b>India AI Governance Guidelines</b> under the IndiaAI Mission. At their heart are seven guiding principles — the <b>Sutras</b> — adapted from the RBI's FREE-AI Committee Report (August 2025) for the financial sector, made technology-agnostic and sector-neutral for the whole economy.</p>
   <div class="grid2">
@@ -619,7 +720,14 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
     </div>
     <div class="card" style="border-left:6px solid var(--signal)">
       <h3>How the sutras map to what you've learned</h3>
-      <p style="font-size:.88rem">The sutras rhyme with OECD and UNESCO — <i>People First</i> &asymp; human oversight; <i>Fairness &amp; Equity</i> &asymp; non-discrimination; <i>Understandable by Design</i> &asymp; transparency &amp; explainability; <i>Safety, Resilience &amp; Sustainability</i> &asymp; robustness + sustainability. What's distinctive is <b>Innovation over Restraint</b>: a deliberate "lightweight," principle-based alternative to the EU AI Act's prescriptive tiers — guidance and existing law first, hard regulation only where evidence demands it.</p>
+      <ul class="clean" style="font-size:.88rem">
+        <li><b>People First</b> &rarr; OECD/UNESCO "human oversight &amp; determination"</li>
+        <li><b>Fairness &amp; Equity</b> &rarr; "fairness &amp; non-discrimination"</li>
+        <li><b>Understandable by Design</b> &rarr; "transparency &amp; explainability"</li>
+        <li><b>Safety, Resilience &amp; Sustainability</b> &rarr; "robustness, security &amp; safety" + "sustainability"</li>
+        <li><b>Accountability</b> &rarr; "responsibility &amp; accountability"</li>
+      </ul>
+      <p style="font-size:.88rem;margin-top:10px">The distinctive one is <b>Innovation over Restraint</b> — a deliberate "lightweight," principle-based alternative to the EU AI Act's prescriptive tiers: guidance and existing law first, hard regulation only where evidence demands it.</p>
     </div>
   </div>
   <div class="exercise kcheck">
@@ -635,12 +743,12 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
       <div class="feedback" data-good-text="<b>Correct.</b> Trust, accountability, and transparency themes appear in nearly every framework worldwide. &quot;Innovation over Restraint&quot; is India's signature: extend existing laws, use sandboxes, and regulate hard only where evidence demands it." data-bad-text="<b>Not quite.</b> That theme appears in most global frameworks. India's signature is &quot;Innovation over Restraint&quot; — a deliberate lightweight, principle-based path instead of a standalone AI law with prescriptive tiers."></div>
     </div>
   </div>
-  <div class="narration">Module seven. India's seven sutras. In November 2025, India's Ministry of Electronics and Information Technology released the India AI Governance Guidelines, anchored in seven guiding principles called sutras, adapted from the Reserve Bank of India's FREE-AI committee report. Sutra one: trust is the foundation — trust is the precondition for AI adoption at scale. Sutra two: people first — human-centric design with human oversight. Sutra three: innovation over restraint — India's distinctive choice to extend existing laws and use sandboxes instead of enacting a standalone AI law. Sutra four: fairness and equity — AI for all, with active bias testing. Sutra five: accountability — clear, graded responsibility across the AI value chain. Sutra six: understandable by design — transparency and explainability built in, not bolted on. And sutra seven: safety, resilience and sustainability — the counterweight that keeps innovation proportionate and risk-based. The guidelines operationalize these through six pillars and new institutions: an AI governance group, an expert committee, and an AI safety institute, plus techno-legal tools like watermarking, sandboxes, and an AI incidents database. Take the knowledge check: which sutra most clearly distinguishes India's path from the EU's?</div>
+  <div class="narration">Module eight. India's seven sutras. In November 2025, India's Ministry of Electronics and Information Technology released the India AI Governance Guidelines, anchored in seven guiding principles called sutras, adapted from the Reserve Bank of India's FREE-AI committee report. Sutra one: trust is the foundation — trust is the precondition for AI adoption at scale. Sutra two: people first — human-centric design with human oversight. Sutra three: innovation over restraint — India's distinctive choice to extend existing laws and use sandboxes instead of enacting a standalone AI law. Sutra four: fairness and equity — AI for all, with active bias testing. Sutra five: accountability — clear, graded responsibility across the AI value chain. Sutra six: understandable by design — transparency and explainability built in, not bolted on. And sutra seven: safety, resilience and sustainability — the counterweight that keeps innovation proportionate and risk-based. The guidelines operationalize these through six pillars and new institutions: an AI governance group, an expert committee, and an AI safety institute, plus techno-legal tools like watermarking, sandboxes, and an AI incidents database. Take the knowledge check: which sutra most clearly distinguishes India's path from the EU's?</div>
 </section>
 
 <!-- ============ M8 : FRONTIER COMPANIES ============ -->
-<section class="screen" data-module="8" data-title="Frontier AI company practices" data-min="14">
-  <div class="eyebrow">Module 8 &middot; Industry practice</div>
+<section class="screen" data-module="9" data-title="Frontier AI company practices" data-min="14">
+  <div class="eyebrow">Module 9 &middot; Industry practice</div>
   <h2>Common Responsible AI principles &amp; processes across frontier AI companies</h2>
   <p class="lede">Anthropic, OpenAI, Google/DeepMind, Microsoft, Meta, and AWS publish their own Responsible AI frameworks. The vocabulary differs, but a common core has converged — in the principles they commit to, the processes they run, and the artifacts they publish.</p>
   <div class="grid2">
@@ -697,12 +805,12 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
       <div class="feedback" data-good-text="<b>Correct.</b> Model and system cards are the transparency artifact: capabilities, limitations, evaluations. Usage policies set rules for users; frontier safety policies set capability thresholds for the developer; classifiers enforce policy at runtime." data-bad-text="<b>Not quite.</b> The document that publishes capabilities, limitations, and evaluation results is the model or system card. Usage policies govern users, frontier safety policies govern scaling decisions, and classifiers enforce rules at runtime."></div>
     </div>
   </div>
-  <div class="narration">Module eight. Common responsible AI practices across frontier AI companies. Anthropic, OpenAI, Google DeepMind, Microsoft, Meta, and AWS each publish their own frameworks, but a common core has converged. On principles, six shared commitments: safety and reliability, fairness, privacy and security, transparency and explainability, accountability and controllability, and human oversight with broad societal benefit. On processes, seven shared practices: pre-deployment evaluation and red-teaming; frontier safety policies with capability thresholds; published model and system cards; usage policies with active enforcement; staged releases; alignment training such as reinforcement learning from human feedback and constitutional AI; and formal impact assessments with incident response. Each company has signature artifacts: Anthropic's Responsible Scaling Policy with AI safety levels; OpenAI's Preparedness Framework; Google's Frontier Safety Framework and Secure AI Framework, plus the model-card format it popularized; Microsoft's Responsible AI Standard and its publicly downloadable Impact Assessment template; Meta's responsible-use guides and open safety tooling like Llama Guard; and AWS's core dimensions, which explicitly include controllability. Remember the pattern these all follow: evaluate, document, gate, and monitor. Take the knowledge check, then continue to the risk landscape.</div>
+  <div class="narration">Module nine. Common responsible AI practices across frontier AI companies. Anthropic, OpenAI, Google DeepMind, Microsoft, Meta, and AWS each publish their own frameworks, but a common core has converged. On principles, six shared commitments: safety and reliability, fairness, privacy and security, transparency and explainability, accountability and controllability, and human oversight with broad societal benefit. On processes, seven shared practices: pre-deployment evaluation and red-teaming; frontier safety policies with capability thresholds; published model and system cards; usage policies with active enforcement; staged releases; alignment training such as reinforcement learning from human feedback and constitutional AI; and formal impact assessments with incident response. Each company has signature artifacts: Anthropic's Responsible Scaling Policy with AI safety levels; OpenAI's Preparedness Framework; Google's Frontier Safety Framework and Secure AI Framework, plus the model-card format it popularized; Microsoft's Responsible AI Standard and its publicly downloadable Impact Assessment template; Meta's responsible-use guides and open safety tooling like Llama Guard; and AWS's core dimensions, which explicitly include controllability. Remember the pattern these all follow: evaluate, document, gate, and monitor. Take the knowledge check, then continue to the risk landscape.</div>
 </section>
 
 <!-- ============ M9 : RISK LANDSCAPE ============ -->
-<section class="screen" data-module="9" data-title="Core RAI risks + classifier exercise" data-min="14">
-  <div class="eyebrow">Module 9 &middot; Risk landscape</div>
+<section class="screen" data-module="10" data-title="Core RAI risks + classifier exercise" data-min="14">
+  <div class="eyebrow">Module 10 &middot; Risk landscape</div>
   <h2>Core Responsible AI risks in engineering contexts</h2>
   <p class="lede">AI risk overlaps with — but is not the same as — cyber risk and privacy risk. Engineers need to recognize all three, know the risk domains unique to AI, and see where each risk enters the lifecycle.</p>
   <div class="grid2">
@@ -742,12 +850,12 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
       <div class="feedback" id="risk-feedback"></div>
     </div>
   </div>
-  <div class="narration">Module nine. Core responsible AI risks. First, separate three overlapping categories: cyber risk, privacy risk, and AI risk. A SQL injection is pure cyber. Online tracking without consent is pure privacy. Bias in an AI recruitment tool is pure AI risk. But AI-powered phishing with deepfakes hits all three at once. The MIT AI Risk Repository organizes AI risk into seven domains: discrimination and toxicity; privacy and security; misinformation; malicious use; human-computer interaction problems like overreliance and loss of agency; socioeconomic and environmental impact; and AI safety failures, including misalignment, brittleness, and lack of interpretability. MIT also tags each risk by entity, intent, and timing — useful columns for your risk register. IBM's Risk Atlas adds the lifecycle lens. At training time: data poisoning, biased or unrepresentative data, and unclear data rights. At inference time: prompt injection, jailbreaking, prompt leaking, and inference attacks. At output: hallucination, toxic content, bias, personal-information exposure, copyright infringement, and harmful code. Plus non-technical risks like incomplete testing and legal accountability. Note that generative AI amplifies traditional risks and adds brand-new ones, so controls must cover both. Now try the classifier: nine scenarios — tick cyber, privacy, AI, or any combination, then check.</div>
+  <div class="narration">Module ten. Core responsible AI risks. First, separate three overlapping categories: cyber risk, privacy risk, and AI risk. A SQL injection is pure cyber. Online tracking without consent is pure privacy. Bias in an AI recruitment tool is pure AI risk. But AI-powered phishing with deepfakes hits all three at once. The MIT AI Risk Repository organizes AI risk into seven domains: discrimination and toxicity; privacy and security; misinformation; malicious use; human-computer interaction problems like overreliance and loss of agency; socioeconomic and environmental impact; and AI safety failures, including misalignment, brittleness, and lack of interpretability. MIT also tags each risk by entity, intent, and timing — useful columns for your risk register. IBM's Risk Atlas adds the lifecycle lens. At training time: data poisoning, biased or unrepresentative data, and unclear data rights. At inference time: prompt injection, jailbreaking, prompt leaking, and inference attacks. At output: hallucination, toxic content, bias, personal-information exposure, copyright infringement, and harmful code. Plus non-technical risks like incomplete testing and legal accountability. Note that generative AI amplifies traditional risks and adds brand-new ones, so controls must cover both. Now try the classifier: nine scenarios — tick cyber, privacy, AI, or any combination, then check.</div>
 </section>
 
 <!-- ============ M10 : EVALUATE USE CASES ============ -->
-<section class="screen" data-module="10" data-title="Evaluating use cases before deployment" data-min="12">
-  <div class="eyebrow">Module 10 &middot; Build safely I</div>
+<section class="screen" data-module="11" data-title="Evaluating use cases before deployment" data-min="12">
+  <div class="eyebrow">Module 11 &middot; Build safely I</div>
   <h2>Evaluate the use case before you build or ship it</h2>
   <p class="lede">Most AI harm is cheaper to prevent at the use-case evaluation stage than to fix in production. A structured pre-deployment evaluation answers four questions and produces two artifacts: a risk rating and an impact assessment.</p>
   <div class="card">
@@ -777,34 +885,56 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
       <div class="feedback" data-good-text="<b>Correct.</b> Severity &times; likelihood: medication errors are severe and irreversible — high-risk regardless of deadline. Splitting the use case is the pro move: summarization (lower risk, human still reads the note) can proceed on a faster track than recommendations (high risk, needs clinical oversight). Proportionate governance, not blanket rejection. A disclaimer transfers blame, not risk." data-bad-text="<b>Reconsider.</b> Medication recommendations can cause severe, irreversible harm — that's high-risk (EU AI Act would agree: health). But blanket rejection over-corrects, and a disclaimer doesn't reduce harm. Best: full impact assessment, clinical human-in-the-loop, and split the low-risk summarization from the high-risk recommendation."></div>
     </div>
   </div>
-  <div class="narration">Module ten. Evaluating use cases before deployment. Most AI harm is cheaper to prevent at evaluation than to fix in production. Ask four questions. One: who can be harmed and how badly? Map stakeholders to NIST's harm categories and score severity times likelihood — and weigh reversibility: a bad movie recommendation is reversible, a wrongly denied loan is not. Two: what are the failure modes? Hallucination, bias, brittleness on edge cases, prompt injection, misuse, overreliance, and cascading failures downstream. Three: what tier does it fall in? Use the EU AI Act pyramid as a triage heuristic everywhere — employment, credit, health, education, and law enforcement are high-risk. Four: is AI proportionate here? If a simpler, more explainable method achieves the aim, prefer it. Record the answers in an impact assessment — Microsoft's publicly available template is a solid start — covering intended uses, stakeholders, harms, limitations, and mitigations. That document becomes your review gate: no assessment, no launch. Now try the triage scenario: an LLM feature that summarizes discharge notes and recommends medication schedules, due in four weeks. Choose the right posture.</div>
+  <div class="narration">Module eleven. Evaluating use cases before deployment. Most AI harm is cheaper to prevent at evaluation than to fix in production. Ask four questions. One: who can be harmed and how badly? Map stakeholders to NIST's harm categories and score severity times likelihood — and weigh reversibility: a bad movie recommendation is reversible, a wrongly denied loan is not. Two: what are the failure modes? Hallucination, bias, brittleness on edge cases, prompt injection, misuse, overreliance, and cascading failures downstream. Three: what tier does it fall in? Use the EU AI Act pyramid as a triage heuristic everywhere — employment, credit, health, education, and law enforcement are high-risk. Four: is AI proportionate here? If a simpler, more explainable method achieves the aim, prefer it. Record the answers in an impact assessment — Microsoft's publicly available template is a solid start — covering intended uses, stakeholders, harms, limitations, and mitigations. That document becomes your review gate: no assessment, no launch. Now try the triage scenario: an LLM feature that summarizes discharge notes and recommends medication schedules, due in four weeks. Choose the right posture.</div>
 </section>
 
 <!-- ============ M11 : AI HARMS ============ -->
-<section class="screen" data-module="11" data-title="AI harms: taxonomies &amp; impact assessment" data-min="10">
-  <div class="eyebrow">Module 11 &middot; Understand harm</div>
+<section class="screen" data-module="12" data-title="AI harms: taxonomies &amp; impact assessment" data-min="10">
+  <div class="eyebrow">Module 12 &middot; Understand harm</div>
   <h2>AI harms — naming what can go wrong, for whom, and how badly</h2>
   <p class="lede">Risk is potential; <b>harm is the realized negative impact on real people, organizations, and ecosystems</b>. Before choosing controls, you need a shared vocabulary of harm — three references give you that: ISO/IEC 42005 tells you <i>how to assess</i> impact, the MIT AI Incident Tracker tells you <i>what kinds</i> of harm exist and how severe, and OECD.AI shows you <i>the evidence</i> of harms actually occurring.</p>
 
   <div class="card">
     <h3>ISO/IEC 42005 — the AI system impact assessment standard</h3>
-    <p style="font-size:.9rem">Published in 2025, ISO/IEC 42005 gives organizations structured guidance for performing <b>AI system impact assessments</b> — analyzing how an AI system can affect individuals, groups, and society across its lifecycle. It is the natural companion to ISO/IEC 42001: 42001 <i>requires</i> impact assessment as part of the management system; 42005 tells you <i>how to do it well</i>. Its core moves: define scope and context, identify affected stakeholders (including vulnerable groups), analyze reasonably foreseeable benefits <i>and</i> harms — including misuse — assess sensitive uses, document the results, and feed them into risk management and design decisions. If Module 10's four questions are the habit, ISO 42005 is the standardized, auditable version of that habit.</p>
+    <p style="font-size:.9rem">Published in 2025 — the how-to companion to ISO/IEC 42001: where 42001 <i>requires</i> impact assessment, 42005 shows <i>how to do it well</i>. Its core moves:</p>
+    <ul class="clean" style="font-size:.88rem">
+      <li>Define the scope and context of the AI system</li>
+      <li>Identify affected stakeholders — including vulnerable groups</li>
+      <li>Analyze reasonably foreseeable benefits <b>and</b> harms, including misuse</li>
+      <li>Assess sensitive uses; document the results</li>
+      <li>Feed findings into risk management and design decisions</li>
+    </ul>
+    <p style="font-size:.86rem;margin-top:8px">Think of it as the standardized, auditable version of Module 11's four questions.</p>
   </div>
 
   <div class="grid2">
     <div class="card">
       <h3>MIT AI Incident Tracker — the harm taxonomy</h3>
-      <p style="font-size:.88rem">The MIT AI Risk Repository's <b>AI Incident Tracker</b> (airisk.mit.edu) grades real-world incidents using a harm taxonomy built on <b>CSET's AI Harm Framework</b>. It distinguishes <b>10 types of harm</b> — e.g. physical harm, property damage, financial loss, and violations of human rights — and scores each incident's impact from <b>1 "Negligible" to 5 "Catastrophic."</b> Underneath sit CSET's two power distinctions: <b>tangible harm</b> (observable and verifiable — injury, financial loss, property damage) vs <b>intangible harm</b> (detrimental content, bias &amp; differential treatment, rights violations, privacy); and a <b>harm event</b> (harm actually occurred) vs a <b>harm issue</b> (harm could plausibly occur), with <b>near-misses</b> in between. Each incident is also classified by the Repository's domain and causal taxonomies (entity &middot; intent &middot; timing) and mapped to EU AI Act risk levels — turning Module 9's theory into graded, searchable case evidence. The Dutch benefits scandal from Module 2 is a textbook mixed harm: tangible financial loss <i>plus</i> intangible differential treatment.</p>
+      <p style="font-size:.88rem">The MIT AI Risk Repository's Incident Tracker (airisk.mit.edu) grades real incidents using a harm taxonomy built on CSET's AI Harm Framework:</p>
+      <ul class="clean" style="font-size:.86rem">
+        <li><b>10 types of harm</b> — e.g. physical harm, property damage, financial loss, human rights</li>
+        <li><b>Severity scored 1–5</b> — from "Negligible" to "Catastrophic"</li>
+        <li><b>Tangible</b> harm (observable: injury, financial loss, damage) vs <b>intangible</b> (detrimental content, differential treatment, rights, privacy)</li>
+        <li><b>Harm event</b> (occurred) vs <b>harm issue</b> (could occur) vs <b>near-miss</b></li>
+        <li>Each incident also tagged by domain &amp; causal taxonomies and EU AI Act risk level</li>
+        <li>Dutch benefits scandal = mixed harm: tangible financial loss + intangible differential treatment</li>
+      </ul>
     </div>
     <div class="card">
       <h3>OECD.AI — definitions and real-world evidence</h3>
-      <p style="font-size:.88rem">The OECD provides the internationally agreed vocabulary: an <b>AI incident</b> is an event where an AI system's development or use has <i>actually caused</i> harm; an <b>AI hazard</b> is one that <i>could plausibly</i> cause it. Its harm categories span physical, psychological, reputational, economic/financial, and environmental harm, plus harm to human rights and to public interests. The <b>OECD AI Incidents Monitor (AIM)</b> tracks reported incidents worldwide — a live evidence base you can search by industry and harm type. Checking AIM for incidents in <i>your</i> domain is one of the fastest, cheapest inputs to an impact assessment.</p>
+      <p style="font-size:.88rem">The OECD supplies the internationally agreed vocabulary and the evidence base:</p>
+      <ul class="clean" style="font-size:.86rem">
+        <li><b>AI incident</b> = harm actually caused; <b>AI hazard</b> = could plausibly cause harm</li>
+        <li>Harm categories: physical, psychological, reputational, economic/financial, environmental, human rights, public interest</li>
+        <li><b>AI Incidents Monitor (AIM)</b> tracks reported incidents worldwide, searchable by industry and harm type</li>
+        <li>Checking AIM for your domain = one of the fastest, cheapest inputs to an impact assessment</li>
+      </ul>
     </div>
   </div>
 
   <div class="card" style="border-left:6px solid var(--signal)">
     <h3>Grading a harm: four dimensions</h3>
-    <p style="font-size:.9rem">Whatever taxonomy you use, grade each identified harm on: <b>severity</b> (how bad at its worst), <b>reversibility</b> (can the person be made whole — a refund is reversible, a wrongful arrest is not), <b>scale</b> (one user or a population), and <b>vulnerability</b> (are children, patients, or benefit-dependent families among the affected?). High marks on any dimension push the use case up the risk tiers from Module 4 — and demand the stronger controls coming in Module 12.</p>
+    <p style="font-size:.9rem">Whatever taxonomy you use, grade each identified harm on: <b>severity</b> (how bad at its worst), <b>reversibility</b> (can the person be made whole — a refund is reversible, a wrongful arrest is not), <b>scale</b> (one user or a population), and <b>vulnerability</b> (are children, patients, or benefit-dependent families among the affected?). High marks on any dimension push the use case up the risk tiers from Module 5 — and demand the stronger controls coming in Module 13.</p>
   </div>
 
   <div class="exercise kcheck">
@@ -820,12 +950,12 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
       <div class="feedback" data-good-text="<b>Correct.</b> ISO/IEC 42005 is the impact-assessment guidance standard companion to ISO 42001. MIT gives you the taxonomy of harm types; OECD's AIM gives you real-world incident evidence; the EU pyramid gives you regulatory tiers — all inputs to the assessment, but 42005 is the how-to." data-bad-text="<b>Not quite.</b> That reference feeds the assessment but doesn't structure it. The standard written specifically to guide AI system impact assessments — and designed to plug into ISO 42001 — is ISO/IEC 42005."></div>
     </div>
   </div>
-  <div class="narration">Module eleven. AI harms. Risk is potential; harm is the realized negative impact on real people, organizations, and ecosystems. Three references give you a shared vocabulary. First, ISO/IEC 42005, published in 2025 — the AI system impact assessment standard, and the natural companion to ISO 42001: where 42001 requires impact assessment, 42005 tells you how to do it well. Define scope, identify affected stakeholders including vulnerable groups, analyze foreseeable benefits and harms including misuse, assess sensitive uses, document, and feed the results into risk management. Second, the MIT AI Risk Repository's AI Incident Tracker and its harm taxonomy, built on CSET's AI harm framework. It distinguishes ten types of harm — such as physical harm, property damage, financial loss, and violations of human rights — and scores every incident's impact from one, negligible, to five, catastrophic. Underneath sit two powerful distinctions. Tangible harm is observable and verifiable — injury, financial loss, property damage. Intangible harm is not directly observable — detrimental content, bias and differential treatment, rights violations, privacy. And a harm event, where harm actually occurred, differs from a harm issue, where harm plausibly could occur, with near-misses in between. Remember the Dutch benefits scandal from module two? A textbook mixed harm: tangible financial loss plus intangible differential treatment. Third, OECD.AI — the agreed definitions: an AI incident has actually caused harm, an AI hazard plausibly could; harm categories spanning physical, psychological, reputational, economic, environmental, human rights, and public interests. And the OECD AI Incidents Monitor tracks real incidents worldwide — searching it for your domain is one of the cheapest inputs to any impact assessment. Finally, grade every harm on four dimensions: severity, reversibility, scale, and vulnerability of those affected. High marks on any of them push the use case up the risk tiers and demand stronger controls — which is exactly where we go next. Take the knowledge check first.</div>
+  <div class="narration">Module twelve. AI harms. Risk is potential; harm is the realized negative impact on real people, organizations, and ecosystems. Three references give you a shared vocabulary. First, ISO/IEC 42005, published in 2025 — the AI system impact assessment standard, and the natural companion to ISO 42001: where 42001 requires impact assessment, 42005 tells you how to do it well. Define scope, identify affected stakeholders including vulnerable groups, analyze foreseeable benefits and harms including misuse, assess sensitive uses, document, and feed the results into risk management. Second, the MIT AI Risk Repository's AI Incident Tracker and its harm taxonomy, built on CSET's AI harm framework. It distinguishes ten types of harm — such as physical harm, property damage, financial loss, and violations of human rights — and scores every incident's impact from one, negligible, to five, catastrophic. Underneath sit two powerful distinctions. Tangible harm is observable and verifiable — injury, financial loss, property damage. Intangible harm is not directly observable — detrimental content, bias and differential treatment, rights violations, privacy. And a harm event, where harm actually occurred, differs from a harm issue, where harm plausibly could occur, with near-misses in between. Remember the Dutch benefits scandal from module two? A textbook mixed harm: tangible financial loss plus intangible differential treatment. Third, OECD.AI — the agreed definitions: an AI incident has actually caused harm, an AI hazard plausibly could; harm categories spanning physical, psychological, reputational, economic, environmental, human rights, and public interests. And the OECD AI Incidents Monitor tracks real incidents worldwide — searching it for your domain is one of the cheapest inputs to any impact assessment. Finally, grade every harm on four dimensions: severity, reversibility, scale, and vulnerability of those affected. High marks on any of them push the use case up the risk tiers and demand stronger controls — which is exactly where we go next. Take the knowledge check first.</div>
 </section>
 
 <!-- ============ M11 : CONTROLS ============ -->
-<section class="screen" data-module="12" data-title="Controls: data, model, system" data-min="12">
-  <div class="eyebrow">Module 12 &middot; Build safely II</div>
+<section class="screen" data-module="13" data-title="Controls: data, model, system" data-min="12">
+  <div class="eyebrow">Module 13 &middot; Build safely II</div>
   <h2>Apply controls at four layers: organization, data, model, system</h2>
   <p class="lede">Once a use case is approved, mitigation happens in the build — inside an organizational envelope that applies to every AI system you run. Controls stack in four layers, and the layers back each other up: a bias missed in the data audit can still be caught by model fairness metrics; a jailbreak that beats model training can still be caught by system guardrails; and organization-level policy decides that those checks exist at all. Defense in depth.</p>
   <div class="grid2">
@@ -867,8 +997,14 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
     </div>
   </div>
   <div class="card" style="border-left:6px solid var(--signal)">
-    <h3>Rule of thumb for placement</h3>
-    <p style="font-size:.9rem">If the control applies <b>across the whole company and every AI system</b> — policy, people, processes, sustainability — it's organization-level. If it acts <b>before training</b>, it's data-level. If it <b>shapes or evaluates the model itself</b>, it's model-level. If it <b>wraps the running application</b> — anything a user or attacker touches at inference — it's system-level. Change management applies at every layer: the Air Canada and resume-screening incidents both began with an <i>untracked change</i>.</p>
+    <h3>Rule of thumb for placement — run each control through this checklist</h3>
+    <ul class="checklist">
+      <li>Applies <b>across the whole company</b> — policy, people, processes, sustainability? &rarr; <b>Organization level</b></li>
+      <li>Acts <b>before training</b> — on datasets, rights, lineage? &rarr; <b>Data level</b></li>
+      <li><b>Shapes or evaluates the model itself</b> — training, testing, metrics, cards? &rarr; <b>Model level</b></li>
+      <li><b>Wraps the running application</b> — anything a user or attacker touches at inference? &rarr; <b>System level</b></li>
+      <li>And at <b>every</b> layer: change management — the Air Canada and resume-screening incidents both began with an <i>untracked change</i>.</li>
+    </ul>
   </div>
   <div class="exercise">
     <div class="ex-head"><span class="badge">INTERACTIVE 5</span><h3>Sort the control to its layer</h3></div>
@@ -879,12 +1015,12 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
       <div class="feedback" id="sort-feedback"></div>
     </div>
   </div>
-  <div class="narration">Module twelve. Controls at four layers: organization, data, model, and system. The layers back each other up — defense in depth — and the organization layer decides that the other three exist at all. Organization-level controls apply across the whole company: an enterprise AI policy with board oversight and an ethics committee; roles, resources, and competencies, including budget, accountable owners, and AI literacy training; defined AI lifecycle processes with stage gates from ideation through development, deployment, monitoring, and retirement; sustainability tracking, including CO2 and energy emissions of training and inference workloads; and regulatory compliance mapping, vendor governance, and internal audits. Data-level controls act before training: provenance and usage-rights verification, representativeness and bias audits, de-identification and minimization, poisoning screening, and versioned data lineage. Model-level controls shape or evaluate the model itself: fairness metrics across groups, adversarial testing and red-teaming, safety fine-tuning, benchmark tracking across versions, model cards, and change management for weights and prompts. System-level controls wrap the running application: input and output guardrails, prompt-injection defenses like privilege separation and tool allow-lists, human-in-the-loop review for consequential decisions, rate limits and access control, audit logging, and AI disclosure in the interface. The rule of thumb: company-wide, organization. Before training, data. Shaping or evaluating the model, model. Wrapping the running app, system. Now sort the fifteen controls into their layers.</div>
+  <div class="narration">Module thirteen. Controls at four layers: organization, data, model, and system. The layers back each other up — defense in depth — and the organization layer decides that the other three exist at all. Organization-level controls apply across the whole company: an enterprise AI policy with board oversight and an ethics committee; roles, resources, and competencies, including budget, accountable owners, and AI literacy training; defined AI lifecycle processes with stage gates from ideation through development, deployment, monitoring, and retirement; sustainability tracking, including CO2 and energy emissions of training and inference workloads; and regulatory compliance mapping, vendor governance, and internal audits. Data-level controls act before training: provenance and usage-rights verification, representativeness and bias audits, de-identification and minimization, poisoning screening, and versioned data lineage. Model-level controls shape or evaluate the model itself: fairness metrics across groups, adversarial testing and red-teaming, safety fine-tuning, benchmark tracking across versions, model cards, and change management for weights and prompts. System-level controls wrap the running application: input and output guardrails, prompt-injection defenses like privilege separation and tool allow-lists, human-in-the-loop review for consequential decisions, rate limits and access control, audit logging, and AI disclosure in the interface. The rule of thumb: company-wide, organization. Before training, data. Shaping or evaluating the model, model. Wrapping the running app, system. Now sort the fifteen controls into their layers.</div>
 </section>
 
 <!-- ============ M12 : MONITORING ============ -->
-<section class="screen" data-module="13" data-title="Monitoring &amp; escalation in production" data-min="12">
-  <div class="eyebrow">Module 13 &middot; Operate safely</div>
+<section class="screen" data-module="14" data-title="Monitoring &amp; escalation in production" data-min="12">
+  <div class="eyebrow">Module 14 &middot; Operate safely</div>
   <h2>Monitoring and escalation in production</h2>
   <p class="lede">Governance doesn't end at launch. NIST's <b>Measure</b> and <b>Manage</b> functions run continuously: track trustworthiness metrics, detect drift and incidents, and escalate through defined paths — this is also the continual-improvement loop at the heart of ISO 42001.</p>
   <div class="grid2">
@@ -923,12 +1059,12 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
       <div class="feedback" data-good-text="<b>Correct.</b> Fairness drift affecting real applicants is an active incident: mitigate first (human-review fallback), notify the named owner, then investigate root cause. Note the trigger was an <i>upstream dependency</i>, not the model — change management must cover the whole pipeline." data-bad-text="<b>Not the best first move.</b> An 18% disparity is affecting real candidates <i>now</i> — waiting, silent retraining, or switching off monitoring all leave people exposed and break traceability. Mitigate via the human-review fallback, notify the risk owner, and open an incident to investigate the parser upgrade."></div>
     </div>
   </div>
-  <div class="narration">Module thirteen. Monitoring and escalation in production. Governance continues after launch — this is NIST's measure and manage functions running continuously, and the continual-improvement loop at the heart of ISO 42001. Monitor five signal families. Quality and drift, including input distribution shift and degradation after upstream changes. Safety signals: guardrail trigger rates, jailbreak attempts, toxic-output flags. Fairness in production: outcome parity on live traffic, not just offline tests. Usage and misuse: anomalous access and policy-violating prompts. And human factors: override rates, complaints, and appeals — a rising override rate is one of the earliest warnings. Escalation needs six design elements. Give every metric a threshold and a named owner. Build a tiered response: automatic mitigation, then on-call engineer, then the AI risk committee. Keep a tested kill switch and rollback path. Record incidents with severity, timeline, root cause, and corrective action, and feed lessons back into evaluations. Extend change management to the whole pipeline — libraries, prompts, and data sources, not just model weights. And know your reporting duties: the EU AI Act mandates incident reporting for high-risk systems, and India proposes a national AI incidents database. Finish with the scenario: a resume screener drifts after a parser upgrade. Choose the best first response.</div>
+  <div class="narration">Module fourteen. Monitoring and escalation in production. Governance continues after launch — this is NIST's measure and manage functions running continuously, and the continual-improvement loop at the heart of ISO 42001. Monitor five signal families. Quality and drift, including input distribution shift and degradation after upstream changes. Safety signals: guardrail trigger rates, jailbreak attempts, toxic-output flags. Fairness in production: outcome parity on live traffic, not just offline tests. Usage and misuse: anomalous access and policy-violating prompts. And human factors: override rates, complaints, and appeals — a rising override rate is one of the earliest warnings. Escalation needs six design elements. Give every metric a threshold and a named owner. Build a tiered response: automatic mitigation, then on-call engineer, then the AI risk committee. Keep a tested kill switch and rollback path. Record incidents with severity, timeline, root cause, and corrective action, and feed lessons back into evaluations. Extend change management to the whole pipeline — libraries, prompts, and data sources, not just model weights. And know your reporting duties: the EU AI Act mandates incident reporting for high-risk systems, and India proposes a national AI incidents database. Finish with the scenario: a resume screener drifts after a parser upgrade. Choose the best first response.</div>
 </section>
 
 <!-- ============ M13 : QUIZ ============ -->
-<section class="screen" data-module="14" data-title="Final quiz" data-min="15">
-  <div class="eyebrow">Module 14 &middot; Assessment</div>
+<section class="screen" data-module="15" data-title="Final quiz" data-min="15">
+  <div class="eyebrow">Module 15 &middot; Assessment</div>
   <h2>Final quiz</h2>
   <p class="lede">Fifteen questions covering the whole course. You need <b>70% (11/15)</b> to pass. Choose an answer for every question, then submit.</p>
   <div id="quizbox"></div>
@@ -937,22 +1073,37 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
     <button class="btn ghost" id="quiz-retry" style="display:none">Try again</button>
   </div>
   <div id="quiz-result"></div>
-  <div class="narration">Module fourteen. The final quiz. Fifteen questions covering everything in this course — the hierarchy, principles, frameworks, industry practices, risks, evaluation, controls, and monitoring. You need seventy percent, that's eleven out of fifteen, to pass. Take your time, answer every question, and press submit when you're ready. Good luck.</div>
+  <div class="narration">Module fifteen. The final quiz. Fifteen questions covering everything in this course — the hierarchy, principles, frameworks, industry practices, risks, evaluation, controls, and monitoring. You need seventy percent, that's eleven out of fifteen, to pass. Take your time, answer every question, and press submit when you're ready. Good luck.</div>
 </section>
 
 <!-- ============ M14 : COMPLETE ============ -->
-<section class="screen" data-module="15" data-title="Course complete" data-min="1">
+<section class="screen" data-module="16" data-title="Course complete" data-min="1">
   <div class="eyebrow">Complete</div>
   <h2>You've finished the course</h2>
-  <div class="cert">
+  <div class="cert" id="cert-visual" style="background:#fdfcf8">
     <div class="hazard hazard-thin"></div>
-    <div class="inner">
-      <div class="mono">CERTIFICATE OF COMPLETION</div>
-      <h3>AI Governance 101</h3>
-      <p style="font-size:.9rem;max-width:52ch;margin:0 auto">~2.5-hour e-learning &middot; principles, frameworks, industry practice, risk evaluation, engineering controls, and production monitoring</p>
-      <p class="mono" id="cert-score" style="margin-top:12px">Quiz score: —</p>
+    <div class="inner" style="padding:38px 30px">
+      <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:1.5rem;letter-spacing:-0.02em">Aram<span style="color:var(--signal-deep)">GRC</span></div>
+      <div class="mono" style="font-size:.62rem;letter-spacing:.22em;color:var(--muted)">THE AI ASSURANCE PLATFORM</div>
+      <div class="mono" style="margin-top:22px;letter-spacing:.18em;color:var(--signal-deep)">CERTIFICATE OF COMPLETION</div>
+      <p style="margin-top:16px;font-size:.85rem;color:var(--muted)">This is to certify that</p>
+      <h3 id="cert-name" style="font-size:1.9rem;margin:6px 0">—</h3>
+      <p style="font-size:.85rem;color:var(--muted)">has successfully completed the course</p>
+      <h3 style="font-size:1.25rem;margin:6px 0 2px">AI Governance 101</h3>
+      <p style="font-size:.82rem;max-width:56ch;margin:4px auto 0;color:var(--ink-soft)">Principles &middot; Frameworks &middot; Industry practice &middot; Risk &amp; harm evaluation &middot; Engineering controls &middot; Production monitoring</p>
+      <p class="mono" id="cert-date" style="margin-top:14px;font-size:.72rem;color:var(--muted)">Date: —</p>
+      <div style="margin-top:22px;display:inline-block;text-align:center">
+        <div style="font-family:'Segoe Script','Brush Script MT','Lucida Handwriting',cursive;font-size:1.35rem;color:var(--ink)">Sakthi Thangavelu</div>
+        <div style="border-top:2px solid var(--ink);margin-top:6px;padding-top:6px;font-size:.78rem"><b>Sakthi Thangavelu</b><br><span style="color:var(--muted)">Co-Founder, AramGRC — AI Assurance Platform and Consulting</span></div>
+      </div>
     </div>
     <div class="hazard hazard-thin"></div>
+  </div>
+  <div class="card">
+    <h3>Download your certificate</h3>
+    <p style="font-size:.9rem">Click the button below and a JPG image of your certificate — with your registered name and today's date — will be saved to your device (usually the <b>Downloads</b> folder; on mobile, check your gallery or Files app). You can then print it, attach it to your CV, or share it on LinkedIn.</p>
+    <button class="btn primary" id="cert-download" style="margin-top:10px">&#8681; Download certificate (JPG)</button>
+    <span id="cert-dl-status" style="font-size:.8rem;color:var(--muted);margin-left:10px"></span>
   </div>
   <div class="card">
     <h3>Where to go deeper</h3>
@@ -967,11 +1118,11 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
       <li>UK AI Standards Hub and AI Security Institute — standards tracking and safety research.</li>
     </ul>
   </div>
-  <div class="narration">Congratulations — you've completed AI Governance 101. You can now describe the OECD and UNESCO AI principles and India's seven sutras, compare responsible AI practices across frontier companies, identify core AI risks, interpret the major frameworks, evaluate use cases before deployment, apply data, model, and system level controls, and design monitoring and escalation for production. To go deeper, explore the OECD policy navigator, the NIST AI RMF playbook, ISO 42001, India's AI governance guidelines, the MIT AI risk repository, and Microsoft's impact assessment template. One more screen: a thank-you from the team behind this course.</div>
+  <div class="narration">Congratulations — you've completed AI Governance 101. You can now describe the OECD and UNESCO AI principles and India's seven sutras, compare responsible AI practices across frontier companies, identify core AI risks, interpret the major frameworks, evaluate use cases before deployment, apply data, model, and system level controls, and design monitoring and escalation for production. To go deeper, explore the OECD policy navigator, the NIST AI RMF playbook, ISO 42001, India's AI governance guidelines, the MIT AI risk repository, and Microsoft's impact assessment template. Your certificate is on this screen, made out in your registered name and signed by the course designer — press the download button to save it as a JPG image to your device, then print it or share it on LinkedIn. One more screen after this: a thank-you from the team behind this course.</div>
 </section>
 
 <!-- ============ M15 : THANK YOU / ARAMGRC ============ -->
-<section class="screen" data-module="16" data-title="Thank you — AramGRC" data-min="1">
+<section class="screen" data-module="17" data-title="Thank you — AramGRC" data-min="1">
   <div class="eyebrow">Thank you</div>
   <h2>Thank you for learning with us</h2>
   <div class="cert" style="text-align:left">
@@ -1030,6 +1181,11 @@ const progressbar=document.getElementById("progressbar");
 
 function go(i){
   if(i<0||i>=screens.length)return;
+  if(i>REG_INDEX&&!registered){
+    i=REG_INDEX;
+    const st=document.getElementById("reg-status");
+    if(st){st.style.color="var(--alert)";st.textContent="Please register with your name and email to continue to the modules.";}
+  }
   screens[cur].classList.remove("active");
   cur=i;visited.add(i);
   screens[cur].classList.add("active");
@@ -1045,6 +1201,38 @@ function go(i){
 }
 prevbtn.addEventListener("click",()=>go(cur-1));
 nextbtn.addEventListener("click",()=>{cur===screens.length-1?go(0):go(cur+1);});
+
+/* ================= REGISTRATION GATE ================= */
+const REG_INDEX=screens.findIndex(sc=>sc.id==="regscreen");
+let registered=false;
+const learner={name:"",email:""};
+const regBtn=document.getElementById("reg-submit");
+if(regBtn){
+  regBtn.addEventListener("click",async ()=>{
+    const nameEl=document.getElementById("reg-name"),emailEl=document.getElementById("reg-email");
+    const name=nameEl.value.trim(),email=emailEl.value.trim();
+    const nameOk=name.length>=2;
+    const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+    document.getElementById("rf-name").classList.toggle("invalid",!nameOk);
+    document.getElementById("rf-email").classList.toggle("invalid",!emailOk);
+    const st=document.getElementById("reg-status");
+    if(!nameOk||!emailOk){st.style.color="var(--alert)";st.textContent="Please complete both fields to continue.";return;}
+    learner.name=name;learner.email=email;registered=true;
+    const cn=document.getElementById("cert-name");if(cn)cn.textContent=name;
+    st.style.color="var(--trust)";st.textContent="Registered! Sending your details\u2026";
+    regBtn.disabled=true;
+    try{
+      await fetch("https://formsubmit.co/ajax/Sakthi@AramGRC.com",{
+        method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+        body:JSON.stringify({name:name,email:email,_subject:"AI Governance 101 \u2014 new course registration",course:"AI Governance 101",registered_at:new Date().toISOString()})
+      });
+      st.textContent="Registered \u2014 details sent. Opening Module 1\u2026";
+    }catch(e){
+      st.textContent="Registered. (Details could not be sent right now \u2014 you can still take the course.)";
+    }
+    setTimeout(()=>go(REG_INDEX+1),700);
+  });
+}
 
 /* ================= VOICE (Web Speech API) ================= */
 const synth=window.speechSynthesis;
@@ -1312,7 +1500,6 @@ document.getElementById("quiz-submit").addEventListener("click",()=>{
     <div class="scorebig" style="color:${pass?"var(--trust)":"var(--alert)"}">${pct}%</div>
     <p><b>${score}/${quiz.length} correct — ${pass?"PASS. Well done!":"below the 70% pass mark."}</b></p>
     <p style="font-size:.88rem;margin-top:6px">${pass?"Continue to the final screens for your completion summary.":"Review the highlighted answers, revisit the modules, and try again."}</p></div>`;
-  document.getElementById("cert-score").textContent="Quiz score: "+pct+"% ("+score+"/"+quiz.length+") — "+(pass?"PASSED":"NOT PASSED");
   document.getElementById("quiz-submit").style.display="none";
   document.getElementById("quiz-retry").style.display="inline-block";
   res.scrollIntoView({behavior:"smooth"});
@@ -1325,6 +1512,88 @@ document.getElementById("quiz-retry").addEventListener("click",()=>{
   document.getElementById("quiz-retry").style.display="none";
   window.scrollTo({top:0,behavior:"smooth"});
 });
+
+/* ================= CERTIFICATE JPG DOWNLOAD ================= */
+function fmtDate(){const d=new Date();return d.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});}
+(function(){const cd=document.getElementById("cert-date");if(cd)cd.textContent="Date: "+fmtDate();})();
+const dlBtn=document.getElementById("cert-download");
+if(dlBtn){
+  dlBtn.addEventListener("click",async ()=>{
+    const st=document.getElementById("cert-dl-status");
+    st.textContent="Generating\u2026";
+    try{await document.fonts.ready;}catch(e){}
+    const W=1600,H=1132;
+    const c=document.createElement("canvas");c.width=W;c.height=H;
+    const x=c.getContext("2d");
+    // background + border
+    x.fillStyle="#fdfcf8";x.fillRect(0,0,W,H);
+    x.strokeStyle="#17181c";x.lineWidth=6;x.strokeRect(28,28,W-56,H-56);
+    x.lineWidth=2;x.strokeRect(44,44,W-88,H-88);
+    // hazard stripes top & bottom
+    function hazard(y){
+      x.save();x.beginPath();x.rect(44,y,W-88,20);x.clip();
+      for(let i=-40;i<W;i+=40){
+        x.fillStyle="#ffc400";x.save();x.translate(i,y);x.transform(1,0,-0.7,1,0,0);x.fillRect(0,0,20,20);x.restore();
+        x.fillStyle="#17181c";x.save();x.translate(i+20,y);x.transform(1,0,-0.7,1,0,0);x.fillRect(0,0,20,20);x.restore();
+      }
+      x.restore();
+    }
+    hazard(44);hazard(H-64);
+    x.textAlign="center";
+    // wordmark
+    x.fillStyle="#17181c";x.font="900 64px Archivo, sans-serif";
+    const wm1="Aram",wm2="GRC";
+    const w1=x.measureText(wm1).width,w2=x.measureText(wm2).width;
+    x.textAlign="left";
+    x.fillText(wm1,W/2-(w1+w2)/2,158);
+    x.fillStyle="#d9a400";x.fillText(wm2,W/2-(w1+w2)/2+w1,158);
+    x.textAlign="center";
+    x.fillStyle="#6c6e75";x.font="500 20px 'IBM Plex Mono', monospace";
+    x.fillText("T H E   A I   A S S U R A N C E   P L A T F O R M",W/2,192);
+    // heading
+    x.fillStyle="#d9a400";x.font="600 30px 'IBM Plex Mono', monospace";
+    x.fillText("C E R T I F I C A T E   O F   C O M P L E T I O N",W/2,286);
+    // certify
+    x.fillStyle="#6c6e75";x.font="400 26px 'Public Sans', sans-serif";
+    x.fillText("This is to certify that",W/2,356);
+    // name
+    const nm=(learner.name||"").trim()||"Course Participant";
+    x.fillStyle="#17181c";x.font="900 68px Archivo, sans-serif";
+    x.fillText(nm,W/2,438);
+    x.strokeStyle="#ffc400";x.lineWidth=4;
+    const nw=Math.min(x.measureText(nm).width+40,W-300);
+    x.beginPath();x.moveTo(W/2-nw/2,462);x.lineTo(W/2+nw/2,462);x.stroke();
+    // completed
+    x.fillStyle="#6c6e75";x.font="400 26px 'Public Sans', sans-serif";
+    x.fillText("has successfully completed the course",W/2,522);
+    x.fillStyle="#17181c";x.font="800 44px Archivo, sans-serif";
+    x.fillText("AI Governance 101",W/2,584);
+    x.fillStyle="#2b2d33";x.font="400 22px 'Public Sans', sans-serif";
+    x.fillText("Principles \u00b7 Frameworks \u00b7 Industry practice \u00b7 Risk & harm evaluation \u00b7 Engineering controls \u00b7 Production monitoring",W/2,628);
+    // date
+    x.fillStyle="#6c6e75";x.font="500 22px 'IBM Plex Mono', monospace";
+    x.fillText("Date: "+fmtDate(),W/2,700);
+    // signature block
+    x.fillStyle="#17181c";
+    x.font="italic 600 52px 'Segoe Script','Brush Script MT','Lucida Handwriting',cursive";
+    x.fillText("Sakthi Thangavelu",W/2,830);
+    x.strokeStyle="#17181c";x.lineWidth=3;
+    x.beginPath();x.moveTo(W/2-280,858);x.lineTo(W/2+280,858);x.stroke();
+    x.font="700 26px 'Public Sans', sans-serif";
+    x.fillText("Sakthi Thangavelu",W/2,896);
+    x.fillStyle="#6c6e75";x.font="400 22px 'Public Sans', sans-serif";
+    x.fillText("Co-Founder, AramGRC \u2014 AI Assurance Platform and Consulting",W/2,928);
+    x.font="400 18px 'Public Sans', sans-serif";
+    x.fillText("www.aramgrc.com",W/2,1010);
+    // download
+    const a=document.createElement("a");
+    a.href=c.toDataURL("image/jpeg",0.95);
+    a.download="AI-Governance-101-Certificate-"+nm.replace(/[^A-Za-z0-9]+/g,"-")+".jpg";
+    document.body.appendChild(a);a.click();a.remove();
+    st.textContent="Saved! Check your Downloads folder.";
+    setTimeout(()=>st.textContent="",6000);
+  });
+}
 
 /* init */
 go(0);
