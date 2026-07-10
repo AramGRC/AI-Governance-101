@@ -377,7 +377,7 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
 <section class="screen" data-module="0" data-title="Register for your certificate" data-min="1" id="regscreen">
   <div class="eyebrow">Registration</div>
   <h2>Register to begin — and to receive your completion certificate</h2>
-  <p class="lede">Enter your name and email ID before starting the modules. Your name appears on the completion certificate at the end of the course, and your details are sent to the course team at AramGRC so your certificate can be issued. Both fields are required to continue.</p>
+  <p class="lede">Enter your name and email ID before starting the modules. Your name appears on the completion certificate at the end of the course. Both fields are required to continue.</p>
   <div class="card" style="max-width:560px">
     <div class="reg-field" id="rf-name">
       <label for="reg-name">Full name <span style="color:var(--alert)">*</span></label>
@@ -391,9 +391,9 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
     </div>
     <button class="btn primary" id="reg-submit">Register &amp; start the course &rarr;</button>
     <div id="reg-status"></div>
-    <p style="font-size:.75rem;color:var(--muted);margin-top:14px">By registering, you agree that your name and email will be shared with AramGRC (Sakthi@AramGRC.com) for the purpose of issuing your course completion certificate.</p>
+    <p style="font-size:.75rem;color:var(--muted);margin-top:14px">Your details are used only to personalize your completion certificate. They stay in your browser for this session and are not transmitted or stored anywhere.</p>
   </div>
-  <div class="narration">One quick step before the modules begin: registration. Enter your full name and your email ID. Your name will appear on the completion certificate at the end of the course, and your details are sent to the course team at AramGRC so your certificate can be issued. Both fields are required — fill them in, press register and start the course, and module one will open.</div>
+  <div class="narration">One quick step before the modules begin: registration. Enter your full name and your email ID. Your name will appear on the completion certificate at the end of the course. Your details are used only to personalize that certificate — they stay in your browser and are not sent or stored anywhere. Both fields are required — fill them in, press register and start the course, and module one will open.</div>
 </section>
 
 <!-- ============ M1 : HIERARCHY ============ -->
@@ -1219,17 +1219,8 @@ if(regBtn){
     if(!nameOk||!emailOk){st.style.color="var(--alert)";st.textContent="Please complete both fields to continue.";return;}
     learner.name=name;learner.email=email;registered=true;
     const cn=document.getElementById("cert-name");if(cn)cn.textContent=name;
-    st.style.color="var(--trust)";st.textContent="Registered! Sending your details\u2026";
-    regBtn.disabled=true;
-    try{
-      await fetch("https://formsubmit.co/ajax/Sakthi@AramGRC.com",{
-        method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
-        body:JSON.stringify({name:name,email:email,_subject:"AI Governance 101 \u2014 new course registration",course:"AI Governance 101",registered_at:new Date().toISOString()})
-      });
-      st.textContent="Registered \u2014 details sent. Opening Module 1\u2026";
-    }catch(e){
-      st.textContent="Registered. (Details could not be sent right now \u2014 you can still take the course.)";
-    }
+    st.style.color="var(--trust)";regBtn.disabled=true;
+    st.textContent="Registered! Opening Module 1\u2026";
     setTimeout(()=>go(REG_INDEX+1),700);
   });
 }
