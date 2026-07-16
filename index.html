@@ -1106,6 +1106,9 @@ button:focus-visible,.choice:focus-visible,.qopt:focus-visible{outline:3px solid
     <p style="font-size:.9rem">Click the button below and a JPG image of your certificate — with your registered name and today's date — will be saved to your device (usually the <b>Downloads</b> folder; on mobile, check your gallery or Files app). You can then print it, attach it to your CV, or share it on LinkedIn.</p>
     <button class="btn primary" id="cert-download" style="margin-top:10px">&#8681; Download certificate (JPG)</button>
     <span id="cert-dl-status" style="font-size:.8rem;color:var(--muted);margin-left:10px"></span>
+    <a id="cert-dl-fallback" download="AI-Governance-101-Certificate.jpg" style="display:none;font-size:.85rem;font-weight:700;color:var(--trust);margin-left:6px" href="#">Open / save certificate image</a>
+    <p style="font-size:.78rem;color:var(--muted);margin-top:10px">If no file appears in Downloads, your certificate will be shown below — <b>right-click it (desktop) or press-and-hold it (mobile) and choose "Save image as…" / "Save to Photos"</b>.</p>
+    <div id="cert-preview" style="display:none;margin-top:14px"><img id="cert-preview-img" alt="Your course completion certificate" style="width:100%;max-width:760px;border:2px solid var(--ink);border-radius:10px"></div>
   </div>
   <div class="card">
     <h3>Where to go deeper</h3>
@@ -1509,82 +1512,94 @@ document.getElementById("quiz-retry").addEventListener("click",()=>{
 /* ================= CERTIFICATE JPG DOWNLOAD ================= */
 function fmtDate(){const d=new Date();return d.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});}
 (function(){const cd=document.getElementById("cert-date");if(cd)cd.textContent="Date: "+fmtDate();})();
+function drawCertificate(){
+  const W=1600,H=1132;
+  const c=document.createElement("canvas");c.width=W;c.height=H;
+  const x=c.getContext("2d");
+  x.fillStyle="#fdfcf8";x.fillRect(0,0,W,H);
+  x.strokeStyle="#17181c";x.lineWidth=6;x.strokeRect(28,28,W-56,H-56);
+  x.lineWidth=2;x.strokeRect(44,44,W-88,H-88);
+  function hazard(y){
+    x.save();x.beginPath();x.rect(44,y,W-88,20);x.clip();
+    for(let i=-40;i<W;i+=40){
+      x.fillStyle="#ffc400";x.save();x.translate(i,y);x.transform(1,0,-0.7,1,0,0);x.fillRect(0,0,20,20);x.restore();
+      x.fillStyle="#17181c";x.save();x.translate(i+20,y);x.transform(1,0,-0.7,1,0,0);x.fillRect(0,0,20,20);x.restore();
+    }
+    x.restore();
+  }
+  hazard(44);hazard(H-64);
+  x.fillStyle="#17181c";x.font="900 64px Archivo, sans-serif";
+  const wm1="Aram",wm2="GRC";
+  const w1=x.measureText(wm1).width,w2=x.measureText(wm2).width;
+  x.textAlign="left";
+  x.fillText(wm1,W/2-(w1+w2)/2,158);
+  x.fillStyle="#d9a400";x.fillText(wm2,W/2-(w1+w2)/2+w1,158);
+  x.textAlign="center";
+  x.fillStyle="#6c6e75";x.font="500 20px 'IBM Plex Mono', monospace";
+  x.fillText("T H E   A I   A S S U R A N C E   P L A T F O R M",W/2,192);
+  x.fillStyle="#d9a400";x.font="600 30px 'IBM Plex Mono', monospace";
+  x.fillText("C E R T I F I C A T E   O F   C O M P L E T I O N",W/2,286);
+  x.fillStyle="#6c6e75";x.font="400 26px 'Public Sans', sans-serif";
+  x.fillText("This is to certify that",W/2,356);
+  const nm=(learner.name||"").trim()||"Course Participant";
+  x.fillStyle="#17181c";x.font="900 68px Archivo, sans-serif";
+  x.fillText(nm,W/2,438);
+  x.strokeStyle="#ffc400";x.lineWidth=4;
+  const nw=Math.min(x.measureText(nm).width+40,W-300);
+  x.beginPath();x.moveTo(W/2-nw/2,462);x.lineTo(W/2+nw/2,462);x.stroke();
+  x.fillStyle="#6c6e75";x.font="400 26px 'Public Sans', sans-serif";
+  x.fillText("has successfully completed the course",W/2,522);
+  x.fillStyle="#17181c";x.font="800 44px Archivo, sans-serif";
+  x.fillText("AI Governance 101",W/2,584);
+  x.fillStyle="#2b2d33";x.font="400 22px 'Public Sans', sans-serif";
+  x.fillText("Principles \u00b7 Frameworks \u00b7 Industry practice \u00b7 Risk & harm evaluation \u00b7 Engineering controls \u00b7 Production monitoring",W/2,628);
+  x.fillStyle="#6c6e75";x.font="500 22px 'IBM Plex Mono', monospace";
+  x.fillText("Date: "+fmtDate(),W/2,700);
+  x.fillStyle="#17181c";
+  x.font="italic 600 52px 'Segoe Script','Brush Script MT','Lucida Handwriting',cursive";
+  x.fillText("Sakthi Thangavelu",W/2,830);
+  x.strokeStyle="#17181c";x.lineWidth=3;
+  x.beginPath();x.moveTo(W/2-280,858);x.lineTo(W/2+280,858);x.stroke();
+  x.font="700 26px 'Public Sans', sans-serif";
+  x.fillText("Sakthi Thangavelu",W/2,896);
+  x.fillStyle="#6c6e75";x.font="400 22px 'Public Sans', sans-serif";
+  x.fillText("Co-Founder, AramGRC \u2014 AI Assurance Platform and Consulting",W/2,928);
+  x.font="400 18px 'Public Sans', sans-serif";
+  x.fillText("www.aramgrc.com",W/2,1010);
+  return c;
+}
 const dlBtn=document.getElementById("cert-download");
 if(dlBtn){
   dlBtn.addEventListener("click",async ()=>{
     const st=document.getElementById("cert-dl-status");
-    st.textContent="Generating\u2026";
-    try{await document.fonts.ready;}catch(e){}
-    const W=1600,H=1132;
-    const c=document.createElement("canvas");c.width=W;c.height=H;
-    const x=c.getContext("2d");
-    // background + border
-    x.fillStyle="#fdfcf8";x.fillRect(0,0,W,H);
-    x.strokeStyle="#17181c";x.lineWidth=6;x.strokeRect(28,28,W-56,H-56);
-    x.lineWidth=2;x.strokeRect(44,44,W-88,H-88);
-    // hazard stripes top & bottom
-    function hazard(y){
-      x.save();x.beginPath();x.rect(44,y,W-88,20);x.clip();
-      for(let i=-40;i<W;i+=40){
-        x.fillStyle="#ffc400";x.save();x.translate(i,y);x.transform(1,0,-0.7,1,0,0);x.fillRect(0,0,20,20);x.restore();
-        x.fillStyle="#17181c";x.save();x.translate(i+20,y);x.transform(1,0,-0.7,1,0,0);x.fillRect(0,0,20,20);x.restore();
+    const fb=document.getElementById("cert-dl-fallback");
+    try{
+      st.textContent="Generating\u2026";
+      try{await document.fonts.ready;}catch(e){}
+      const canvas=drawCertificate();
+      const nm=((learner.name||"").trim()||"Course-Participant").replace(/[^A-Za-z0-9]+/g,"-");
+      const blob=await new Promise((res,rej)=>{
+        try{canvas.toBlob(b=>b?res(b):rej(new Error("image encoding failed")),"image/jpeg",0.95);}catch(e){rej(e);}
+      });
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");
+      a.href=url;a.download="AI-Governance-101-Certificate-"+nm+".jpg";
+      document.body.appendChild(a);a.click();a.remove();
+      if(fb){fb.href=url;fb.style.display="inline";}
+      const pv=document.getElementById("cert-preview"),pvi=document.getElementById("cert-preview-img");
+      if(pv&&pvi){pvi.src=url;pv.style.display="block";}
+      st.textContent="If the file didn't appear in Downloads, save the image below (right-click / press-and-hold).";
+    }catch(err){
+      try{
+        const canvas=drawCertificate();
+        const pv=document.getElementById("cert-preview"),pvi=document.getElementById("cert-preview-img");
+        if(pv&&pvi){pvi.src=canvas.toDataURL("image/jpeg",0.92);pv.style.display="block";
+          st.textContent="Automatic download was blocked here \u2014 your certificate is below: right-click / press-and-hold it and choose Save image.";}
+        else{st.textContent="Could not generate the certificate ("+(err&&err.message?err.message:err)+").";}
+      }catch(e2){
+        st.textContent="Could not generate the certificate ("+(e2&&e2.message?e2.message:e2)+").";
       }
-      x.restore();
     }
-    hazard(44);hazard(H-64);
-    x.textAlign="center";
-    // wordmark
-    x.fillStyle="#17181c";x.font="900 64px Archivo, sans-serif";
-    const wm1="Aram",wm2="GRC";
-    const w1=x.measureText(wm1).width,w2=x.measureText(wm2).width;
-    x.textAlign="left";
-    x.fillText(wm1,W/2-(w1+w2)/2,158);
-    x.fillStyle="#d9a400";x.fillText(wm2,W/2-(w1+w2)/2+w1,158);
-    x.textAlign="center";
-    x.fillStyle="#6c6e75";x.font="500 20px 'IBM Plex Mono', monospace";
-    x.fillText("T H E   A I   A S S U R A N C E   P L A T F O R M",W/2,192);
-    // heading
-    x.fillStyle="#d9a400";x.font="600 30px 'IBM Plex Mono', monospace";
-    x.fillText("C E R T I F I C A T E   O F   C O M P L E T I O N",W/2,286);
-    // certify
-    x.fillStyle="#6c6e75";x.font="400 26px 'Public Sans', sans-serif";
-    x.fillText("This is to certify that",W/2,356);
-    // name
-    const nm=(learner.name||"").trim()||"Course Participant";
-    x.fillStyle="#17181c";x.font="900 68px Archivo, sans-serif";
-    x.fillText(nm,W/2,438);
-    x.strokeStyle="#ffc400";x.lineWidth=4;
-    const nw=Math.min(x.measureText(nm).width+40,W-300);
-    x.beginPath();x.moveTo(W/2-nw/2,462);x.lineTo(W/2+nw/2,462);x.stroke();
-    // completed
-    x.fillStyle="#6c6e75";x.font="400 26px 'Public Sans', sans-serif";
-    x.fillText("has successfully completed the course",W/2,522);
-    x.fillStyle="#17181c";x.font="800 44px Archivo, sans-serif";
-    x.fillText("AI Governance 101",W/2,584);
-    x.fillStyle="#2b2d33";x.font="400 22px 'Public Sans', sans-serif";
-    x.fillText("Principles \u00b7 Frameworks \u00b7 Industry practice \u00b7 Risk & harm evaluation \u00b7 Engineering controls \u00b7 Production monitoring",W/2,628);
-    // date
-    x.fillStyle="#6c6e75";x.font="500 22px 'IBM Plex Mono', monospace";
-    x.fillText("Date: "+fmtDate(),W/2,700);
-    // signature block
-    x.fillStyle="#17181c";
-    x.font="italic 600 52px 'Segoe Script','Brush Script MT','Lucida Handwriting',cursive";
-    x.fillText("Sakthi Thangavelu",W/2,830);
-    x.strokeStyle="#17181c";x.lineWidth=3;
-    x.beginPath();x.moveTo(W/2-280,858);x.lineTo(W/2+280,858);x.stroke();
-    x.font="700 26px 'Public Sans', sans-serif";
-    x.fillText("Sakthi Thangavelu",W/2,896);
-    x.fillStyle="#6c6e75";x.font="400 22px 'Public Sans', sans-serif";
-    x.fillText("Co-Founder, AramGRC \u2014 AI Assurance Platform and Consulting",W/2,928);
-    x.font="400 18px 'Public Sans', sans-serif";
-    x.fillText("www.aramgrc.com",W/2,1010);
-    // download
-    const a=document.createElement("a");
-    a.href=c.toDataURL("image/jpeg",0.95);
-    a.download="AI-Governance-101-Certificate-"+nm.replace(/[^A-Za-z0-9]+/g,"-")+".jpg";
-    document.body.appendChild(a);a.click();a.remove();
-    st.textContent="Saved! Check your Downloads folder.";
-    setTimeout(()=>st.textContent="",6000);
   });
 }
 
